@@ -1,6 +1,5 @@
 import fs from "fs";
 import http from "http";
-import path from "path";
 
 // Plan 
 // Get /  --> index.html
@@ -29,8 +28,9 @@ const server = http.createServer((req, res) => {
         sendFile(filePath, res);
     }
     let filename = "./assets" + req.url;
+
     if (filename.includes("img")) {
-        var fileStream = fs.createReadStream(filename);
+        let fileStream = fs.createReadStream(filename);
         res.writeHead(200, { "Content-Type": "image/png" });
         fileStream.pipe(res);
     }
